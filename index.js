@@ -20,6 +20,19 @@ const sql = mysql2.createPool({
     database: process.env.NOME_BANCO
 })
 
+app.get("/", (request, response) => { 
+    const comandoSelect = "SELECT * FROM musicas_ricardocastro"
+    sql.query(comandoSelect, (error, data) => { 
+        if(error){
+            console.log(error)
+            return
+        }
+        response.json(data)
+    })
+})
+
+
+
 app.listen(3000, mensagem)
 
 function mensagem(){
